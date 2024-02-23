@@ -1,7 +1,8 @@
 let cont = 0;//contador para posicionarse en el array
+let contIncorrectos = 0;
 const textoInput = document.getElementById("texto");//TextArea con el texto a escribir
 let textoPlaceholder = "La lluvia cae sobre el tejado, haciendo un sonido relajante.";//Texto predeterminado para escribir
-textoInput.value = textoPlaceholder;//asigna el texto predeterminado al textarea
+textoInput.innerHTML = textoPlaceholder;//asigna el texto predeterminado al textarea
 //La ventana permanece a la escucha de las teclas presionadas por el usuario
 document.addEventListener("keydown", function (event) {
     const mensaje = document.getElementById('mensaje');//Mensaje que avisa si el texto es correcto
@@ -11,45 +12,25 @@ document.addEventListener("keydown", function (event) {
         const letra = textoPlaceholder[index];
         caracteres[index] = letra;
     }
-    // Compara la tecla presionada con la primera letra de la cadena de texto
-    if (event.key.toLowerCase() === caracteres[cont].toLowerCase()) {
-        textoInput.value = textoInput.value.substring(1);//Si la tecla es correcta, elimina dicha letra en la cadena de texto.
-        cont++;
+
+    if (cont < caracteres.length) {//Se asegura de que el contador no sobrepase el tamaño del arreglo
+        // Compara la tecla presionada con la primera letra de la cadena de texto
+        if (event.key.toLowerCase() === caracteres[cont].toLowerCase()) {
+            textoInput.textContent = textoInput.textContent.substring(1);//Si la tecla es correcta, elimina dicha letra en la cadena de texto.
+            cont++;
+        } else if (event.key != "Backspace" && event.key.toLowerCase() != caracteres[cont]) {
+            // Si la tecla es incorrecta, agrega el caracter al inicio del texto y lo colorea de rojo
+            textoInput.innerHTML = `<span class="incorrecto">${event.key}</span>` + textoInput.innerHTML;
+            contIncorrectos++;
+            cont--;
+        } else if (contIncorrectos > 0 && event.key === "Backspace") {
+            textoInput.textContent = textoInput.textContent.substring(1);//Elimina el caracter incorrecto.
+            contIncorrectos--;
+            cont++;
+        }
+
     } else {
-        textoInput.innerHTML = `<span class="incorrecto">${event.key}</span>` + textoInput.value;
+        const next = document.getElementById("next");
+        next.disabled = false;
     }
-    // Actualiza el contenido del textarea
-    //    textoInput.value = textoInput.value.substring(0, textoPlaceholder.length);
-    // textoInput.addEventListener("input", (event) => {
-    //     textoInput.setSelectionRange(0, 0);
-    //     let textoEscrito = textoInput.value;
-
-    //     // Mostrar mensaje de error si el texto es incorrecto
-    //     if (textoEscrito !== textoPlaceholder) {
-    //         mensaje.textContent = "Error: el texto no coincide.";
-    //         mensaje.classList.add("error");
-    //         return;
-    //     }
-
-    //     // Resaltar el texto escrito correctamente
-    //     let textoResaltado = "";
-    //     for (let i = 0; i < textoEscrito.length; i++) {
-    //         if (textoEscrito[i] === textoPlaceholder[i]) {
-    //             textoResaltado += `<span class="correcto">${textoEscrito[i]}</span>`;
-    //         } else {
-    //             textoResaltado += `<span class="incorrecto">${textoEscrito[i]}</span>`;
-    //         }
-    //     }
-
-    //     // Mostrar el texto resaltado en el textarea
-    //     textoInput.innerHTML = textoResaltado;
-
-    //     // Mostrar mensaje de éxito si el texto se ha escrito correctamente
-    //     if (textoEscrito === textoPlaceholder) {
-    //         mensaje.textContent = "¡Felicidades! Has escrito el texto correctamente.";
-    //         mensaje.classList.remove("error");
-    //         mensaje.classList.add("exito");
-    //     }
-    // });
-
 });
