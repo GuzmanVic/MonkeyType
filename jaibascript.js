@@ -4,16 +4,44 @@ const nextButton = document.getElementById("next");
 const textoInput = document.getElementById("texto");//TextArea con el texto a escribir
 // Conjunto de frases
 const frases = [
-    "La lluvia cae sobre el tejado, haciendo un sonido relajante.",
-    "El sol brilla en el cielo azul, iluminando el dia.",
-    "Los pajaros cantan melodias alegres en la mañana.",
+    "No es lo mismo 'huele a traste', que 'atras te huele'",
+    "Que bueno que se hizo noche, para empezar la loquera",
+    "Una vez al año, no hace daño. Una vez al mes, que rico es. Una vez a la semana, van por tu hermana. Una vez al dia, que alegria. Una a cada rato, se te muere el aparato",
+    "Aguas de las verdes matas",
+    "Pujidos entre las palmas",
+    "Amiga date cuenta",
+    "la fogata, la escalera al cielo, el llanero solitario, la fantasma",
+    "El taladro del aberno, el fetuccini, el DJ, el hombre araña, el dedo del gloton",
+    "La inteligencia me persigue, pero yo soy mas rapido",
+    "Llego papa",
+    "Hoy se caso el huitlacoche",
+    "¿apoco si tilin?",
+    "Para mi el 'pollo loco' es un 'pollo normal'",
+    "Hombres desnudos *buscar*",
+    "EEEERRRRneeestoooooOoooo",
+    "Mas vale pajaro en mano, que ser padre a los 15"
     // Agrega más frases según sea necesario
 ];
 
-// Función para cambiar a la siguiente frase
+const frasesUtilizadas = new Set(); // Conjunto para almacenar frases utilizadas
+
+function obtenerNuevaFrase() {
+    let nuevaFrase;
+
+    // Obtén una frase que aún no se haya utilizado
+    do {
+        nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
+    } while (frasesUtilizadas.has(nuevaFrase));
+
+    // Registra la frase como utilizada
+    frasesUtilizadas.add(nuevaFrase);
+
+    return nuevaFrase;
+}
+
 function cambiarFrase() {
-    // Elige una frase aleatoria del conjunto
-    const nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
+    // Elige una nueva frase
+    const nuevaFrase = obtenerNuevaFrase();
 
     // Establece la nueva frase como texto
     textoInput.innerHTML = nuevaFrase;
@@ -24,6 +52,7 @@ function cambiarFrase() {
     // Deshabilita el botón "Siguiente" al cambiar la frase
     nextButton.disabled = true;
 }
+
 const caracteres = [];//Almacenará los caracteres del texto
 
 //La ventana permanece a la escucha de las teclas presionadas por el usuario
@@ -35,7 +64,7 @@ document.addEventListener("keydown", function (event) {
     }
     console.log(caracteres);
     console.log(caracteres.length);
-    if (textoInput.textContent!="") {//Se asegura de que el contador no sobrepase el tamaño del arreglo
+    if (textoInput.textContent !== "" && event.key !== "Shift" && event.key !== "Alt" && event.key !== "Control" && event.key !== "AltGraph") {//Se asegura de que el contador no sobrepase el tamaño del arreglo
         // Compara la tecla presionada con la primera letra de la cadena de texto
         if (event.key.toLowerCase() === caracteres[cont].toLowerCase()) {
             textoInput.textContent = textoInput.textContent.substring(1);//Si la tecla es correcta, elimina dicha letra en la cadena de texto.
@@ -48,7 +77,7 @@ document.addEventListener("keydown", function (event) {
             contIncorrectos--;
         }
 
-    } else {
+    } else if (textoInput.textContent === "") {
         nextButton.disabled = false;
     }
 });
