@@ -44,6 +44,13 @@ p {
     resize: none;
 }
 
+/* -- */
+
+.btn-container {
+    text-align: right;
+    margin-top: 5px;
+}
+
 .btn {
     border: none;
     padding: 10px 20px;
@@ -52,11 +59,17 @@ p {
     font-size: 16px;
 }
 
-.btn-container {
-    text-align: right;
-    margin-top: 20px;
+button#next:enabled, button#reintentar:enabled {
+    background-color: #4caf50;
+    color: #fff;
 }
 
+button#next:disabled {
+    background-color: #A9A9A9;
+    cursor: not-allowed;
+}
+
+/* -- */
 .incorrecto {
     color: red;
     font-weight: bold;
@@ -76,7 +89,7 @@ p {
 }
 
 .keyboard-container {
-    padding-top: 5%;
+    padding-top: 2%;
     justify-content: space-around;
 }
 

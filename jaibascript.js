@@ -60,7 +60,7 @@ function cambiarFrase() {
 
         // Establece la nueva frase como texto
         textoInput.innerHTML = nuevaFrase;
-        textoInput.innerHTML= `<span class="letra-actual">${nuevaFrase[0]}</span>` + textoInput.innerHTML;
+        textoInput.innerHTML = `<span class="letra-actual">${nuevaFrase[0]}</span>` + textoInput.innerHTML;
         cont = 0;
         contIncorrectos = 0;
 
