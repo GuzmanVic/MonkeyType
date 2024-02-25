@@ -3,28 +3,36 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
+    background-color: #444444;
 }
 
 .container {
     max-width: 800px;
+    /* margin: 5% 0 0 30%; */
     margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .textarea-container {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 #texto {
@@ -34,11 +42,27 @@ p {
     border: none;
     outline: none;
     resize: none;
-    color: #ccc;
 }
-.incorrecto{
-    color:red;
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
+
+.btn-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.incorrecto {
+    color: red;
+    font-weight: bold;
+}
+
 #mensaje {
     margin-top: 10px;
+    text-align: center;
 }
