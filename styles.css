@@ -59,6 +59,16 @@ p {
     font-size: 16px;
 }
 
+button#next:enabled, button#reintentar:enabled {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+button#next:disabled {
+    background-color: #A9A9A9;
+    cursor: not-allowed;
+}
+
 /* -- */
 .incorrecto {
     color: red;
