@@ -66,3 +66,49 @@ p {
     margin-top: 10px;
     text-align: center;
 }
+
+/* Estilos teclado */
+
+.parcial-key-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.keyboard-container {
+    padding-top: 5%;
+    justify-content: space-around;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.row {
+    display: flex;
+}
+
+.key {
+    border: 1px solid #999;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.key:hover {
+    background-color: #ccc;
+}
+
+.wide {
+    flex-grow: 2;
+}
+
+.key-pressed {
+    background-color: lightblue;
+}
