@@ -90,9 +90,9 @@ document.addEventListener("keydown", function (event) {
             }
         } else if (event.key != "Backspace" && event.key.toLowerCase() != caracteres[cont]) {
             // Si la tecla es incorrecta, agrega el caracter al inicio del texto y lo colorea de rojo
+            textoInput.innerHTML = `<span class='incorrecto'>${event.key}</span>` + textoInput.textContent;
             contIncorrectos++;//Actualiza el contador de incorrectos para controlar los caracteres que se puedan borrar
             puntos -= 1;//Elimina un punto por cada incorrecto
-            // Al presionar Bacspace se asegura de que no borre mas caracteres de los permitidos con el contador de incorrectos
         }
         // Permite borrar caracteres, siempre y cuando existan caracteres incorrectos
     } else if (contIncorrectos > 0 && event.key === "Backspace") {
