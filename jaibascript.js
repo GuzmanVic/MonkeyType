@@ -60,7 +60,6 @@ function cambiarFrase() {
 
         // Establece la nueva frase como texto
         textoInput.innerHTML = nuevaFrase;
-        textoInput.innerHTML = `<span class="letra-actual">${nuevaFrase[0]}</span>` + textoInput.innerHTML;
         cont = 0;
         contIncorrectos = 0;
 
@@ -79,7 +78,7 @@ document.addEventListener("keydown", function (event) {
         const letra = textoInput.textContent[index];
         caracteres[index] = letra;
     }
-    // Se asegura de que el texto esté vacío antes de entrar a la condicional, y de que no se puedan ingresar las teclas de control
+    // Se asegura de que el texto no esté vacío antes de entrar a la condicional, y de que no se puedan ingresar las teclas de control
     if (textoInput.textContent !== "" && /^[a-zA-ZáéíóúÁÉÍÓÚüÜ0-9,.'"\[\]!@#$%^&*()_+-=<>?:;{}|\\/¿ñ ]$/
         .test(event.key)) {
         // Compara la tecla presionada con la primera letra de la cadena de texto
@@ -91,7 +90,6 @@ document.addEventListener("keydown", function (event) {
             }
         } else if (event.key != "Backspace" && event.key.toLowerCase() != caracteres[cont]) {
             // Si la tecla es incorrecta, agrega el caracter al inicio del texto y lo colorea de rojo
-            textoInput.innerHTML = `<span class="incorrecto">${event.key}</span>` + textoInput.innerHTML;
             contIncorrectos++;//Actualiza el contador de incorrectos para controlar los caracteres que se puedan borrar
             puntos -= 1;//Elimina un punto por cada incorrecto
             // Al presionar Bacspace se asegura de que no borre mas caracteres de los permitidos con el contador de incorrectos
